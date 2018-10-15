@@ -1,0 +1,38 @@
+
+			.context{
+				width: 100%;
+				height: auto;
+
+			}
+			.divlist{
+				margin: 0 3.2em;
+				position: relative;
+				height: auto;
+				background: red;
+				float: left;
+
+			}
+			.Specific{
+				position: absolute;
+				
+				width: 76.8em;
+				height: 19.2em;
+				background: skyblue;
+
+			}
+			.rough{
+				position: absolute;
+				right:0 ;
+				width: 17.6em;
+				height: 19.2em;
+				background: whitesmoke;
+				z-index: 0;
+				
+			}
+			.context .coul .coli {
+				list-style: none;
+				
+			}
+			.context .coli{
+				padding-bottom: 20.8em;
+			}

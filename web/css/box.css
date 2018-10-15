@@ -1,0 +1,93 @@
+	 .box{        	    
+				position: relative;
+				margin-left: 1em;
+				margin-top:1em ;
+				border-radius: 0.5em;
+				width: 13.6em;
+				height: 17.6em;
+				background-color:brown;
+				border: 1px black solid;
+				float: left;
+			}
+			.box img{
+				position: absolute;
+				width: 13.6em;
+				height: 17.6em;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				z-index: 0;
+			}		
+			 .screen{
+				position: absolute;
+				width: 13.6em;
+				height: 17.6em;
+				background-color:brown;
+				opacity: 0.0;
+				 z-index: 0;
+	        }
+              .enter{
+				text-align: center;
+				width: 6em;
+				height: 2em;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				line-height: 2em;
+				opacity: 0.0;
+				  z-index: 0;
+			    background-color: yellow;
+				border-radius: 1em;
+			}
+			.box:hover .screen{
+				opacity: 0.6;
+				cursor: pointer;
+			}
+			.box:hover .enter{
+				opacity: 1.0;
+			}
+			.romenu{
+				width: 17.6em;
+				height: 19em;
+				color: black;
+				background: linear-gradient(45deg,white,whitesmoke,white);
+				border-radius: 0.5em;
+				position: absolute;
+
+
+			}
+			.romenu li:first-child{
+				list-style: none;
+				
+				line-height: 2em;
+				padding-left:5em;
+				transition: 0.3s;
+				color: #888;
+			}
+			
+			.romenu ul li{
+				list-style: none;
+				
+				line-height: 2em;
+				padding-left:1em;
+				transition: 0.3s;
+				color: #888;
+			}
+			.romenu ul{
+				padding-left: 0px;
+			}
+			.romenu ul li:hover:not(:first-child){
+				background-color:cornflowerblue;
+			    color: white;
+			    text-indent: 0.5em;
+			    transition:0.7s;
+			    cursor: pointer;
+			}
+			.romenu ul li:hover:first-child{
+				background-color:cornflowerblue;
+			    color: white; 
+			    cursor: pointer;
+			    transition:0.7s;
+			}
+				

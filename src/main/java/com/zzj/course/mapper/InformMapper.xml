@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.course.dao.InformMapper">
+
+    <resultMap id="informResultMap" type="com.zzj.course.model.Inform">
+        <id column="infid" property="infid" jdbcType="INTEGER"/>
+        <result column="inftitle" property="inftitle" jdbcType="VARCHAR"/>
+        <result column="infcontext" property="infcontext" jdbcType="VARCHAR" />
+        <result column="inftime" property="inftime" jdbcType="VARCHAR" />
+        <result column="infstates" property="infstates" jdbcType="INTEGER" />
+        <result column="infposition" property="infposition" jdbcType="INTEGER" />
+        <result column="infimg" property="infimg" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--查询所有-->
+    <select id="selectAllInform" parameterType="inform" resultMap="informResultMap">
+        select * from inform order by infposition asc
+    </select>
+
+    <select id="findAllInformPh" parameterType="inform" resultMap="informResultMap">
+        select * from inform where infid=#{infid} order by infposition asc
+    </select>
+
+    <select id="selectInformByosition" parameterType="inform" resultMap="informResultMap">
+        select * from inform where infposition= 2 or infposition= 0 order by infstates asc,infposition asc
+    </select>
+
+    <select id="selectInformByStates" parameterType="inform" resultMap="informResultMap">
+        select * from inform where infstates= 0  order by infposition asc
+    </select>
+
+</mapper>

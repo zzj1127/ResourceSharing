@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.course.dao.UserMapper">
+
+    <resultMap id="UserResultMap" type="com.zzj.course.model.User">
+        <id column="userid" property="userId" jdbcType="VARCHAR"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="realname" property="realname" jdbcType="VARCHAR" />
+        <result column="userimg" property="userimg" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="userphone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="userstate" property="userState" jdbcType="INTEGER"/>
+        <result column="usercount" property="userCount" jdbcType="INTEGER" />
+
+
+    </resultMap>
+
+    <!--登陆-->
+    <select id="userLogin" parameterType="User" resultMap="UserResultMap">
+         select * from user where username= #{username} and  password=#{password}
+    </select>
+    <!--注册-->
+    <insert id="register" parameterType="User">
+        <selectKey resultType="java.lang.String" keyColumn="userid" keyProperty="userId" statementType="STATEMENT" order="BEFORE">
+            select replace(uuid(),'-','')
+        </selectKey>
+        insert into user(userid,nickname,username,password,sex,realname,userimg,email,userphone,userstate,usercount)
+        VALUES (#{userId},#{nickname}, #{username}, #{password}, #{sex}, #{realname}, #{userimg}, #{email}, #{userPhone}, 0, #{userCount})
+    </insert>
+    <!--查询名字-->
+    <select id="findUserByName" parameterType="String"
+            resultMap="UserResultMap">
+         select * from user where username= #{username}
+    </select>
+    <!--查询个人信息-->
+    <select id="userSelectById" parameterType="String"
+            resultMap="UserResultMap">
+         select * from user where userid= #{userID}
+    </select>
+    <!--修改信息-->
+    <select id="changeInformation" parameterType="User"
+            resultMap="UserResultMap">
+         update user set email=#{email},sex=#{sex},nickname=#{nickname},userphone=#{userPhone},userimg=#{userimg} where userid=#{userId}
+    </select>
+    <!--修改密码-->
+    <select id="resetpassword"  parameterType="User" resultMap="UserResultMap">
+        update user set password=#{password} where username=#{username}
+    </select>
+</mapper>

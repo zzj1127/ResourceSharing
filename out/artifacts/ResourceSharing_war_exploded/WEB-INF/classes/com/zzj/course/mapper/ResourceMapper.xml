@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.course.dao.ResourceMapper">
+
+    <resultMap id="ResourcesResultMap" type="com.zzj.course.model.Resources">
+        <id column="reid" property="reid" jdbcType="VARCHAR"/>
+        <result column="renames" property="rename" jdbcType="VARCHAR"/>
+        <result column="thunder" property="thunder" jdbcType="VARCHAR" />
+        <result column="netdisk" property="netdisk" jdbcType="VARCHAR"/>
+        <result column="netdiskpwd" property="netdiskpwd" jdbcType="VARCHAR"/>
+        <result column="retime" property="retime" jdbcType="VARCHAR" />
+        <result column="userid" property="userid" jdbcType="VARCHAR" />
+        <result column="typeid" property="typeid" jdbcType="VARCHAR"/>
+        <result column="typeofnameid" property="typeofnameid" jdbcType="VARCHAR"/>
+        <result column="resynopsis" property="resynopsis" jdbcType="VARCHAR"/>
+        <result column="reimg" property="reimg" jdbcType="VARCHAR"/>
+        <result column="restate" property="restate" jdbcType="INTEGER" />
+
+
+    </resultMap>
+
+    <!--查询资源-->
+    <select id="findAllResource" parameterType="Resources" resultMap="ResourcesResultMap">
+         select * from  resources where restate=0
+    </select>
+    <!--通过id查询资源-->
+    <select id="findResourceById" parameterType="Resources" resultMap="ResourcesResultMap">
+         select * from resources where reid=#{reid}and restate=0
+    </select>
+    <!--查询TON-->
+    <select id="selectTonById" parameterType="Resources" resultMap="ResourcesResultMap">
+         select * from resources where typeofnameid=#{typeofnameid}and restate=0
+    </select>
+    <!--查询TYPE-->
+    <select id="selectTypeId" parameterType="Resources" resultMap="ResourcesResultMap">
+         select * from resources where typeid=#{typeid}and restate=0
+    </select>
+    <!--添加资源-->
+    <insert id="addResource" parameterType="Resources" >
+        <selectKey resultType="java.lang.String" keyColumn="reid" keyProperty="reid" statementType="STATEMENT" order="BEFORE">
+            select replace(uuid(),'-','')
+        </selectKey>
+        insert into resources(reid,renames,thunder,netdisk,netdiskpwd,retime,userid,typeid,typeofnameid,resynopsis,restate,reimg)
+        VALUES (#{reid},#{rename}, #{thunder}, #{netdisk}, #{netdiskpwd}, #{retime}, #{userid}, #{typeid}, #{typeofnameid}, #{resynopsis},0, #{reimg})
+    </insert>
+    <!--查询资源-->
+    <select id="findAllResourceBySeacher" parameterType="Resources" resultMap="ResourcesResultMap">
+         select * from resources where renames like "%"#{seacher}"%"and restate=0
+    </select>
+    <!--查询资源-->
+    <select id="findResourcesByUseridPh" parameterType="Resources" resultMap="ResourcesResultMap">
+         select * from resources where userid=#{userid} and restate=0
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+.usermenu{
+	width: 146px;
+	height: 183px;
+	
+	box-shadow:1px 1px 8px  black ;
+	background: white;
+	border-radius: 7px;
+	position: absolute;
+	display: none;
+	z-index: 99;
+
+}
+.usermenu ul{
+	padding-left: 10px;
+}
+.usermenu ul li{
+	list-style: none;
+	line-height: 30px;
+	padding-left: 1px;
+	transition: 0.3s;
+	color: #888;
+}
+
+
